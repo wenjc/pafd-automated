@@ -76,7 +76,7 @@ class Fudan:
         # 获取登录页上的令牌
         result = re.findall(
             '<input type="hidden" name="([a-zA-Z0-9\-_]+)" value="([a-zA-Z0-9\-_]+)"/?>', page_login)
-        # print(result)
+        print(result)
         # result 是一个列表，列表中的每一项是包含 name 和 value 的 tuple，例如
         # [('lt', 'LT-6711210-Ia3WttcMvLBWNBygRNHdNzHzB49jlQ1602983174755-7xmC-cas'), ('dllt', 'userNamePasswordLogin'), ('execution', 'e1s1'), ('_eventId', 'submit'), ('rmShown', '1')]
         data.update(
