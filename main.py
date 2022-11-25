@@ -25,7 +25,7 @@ class Fudan:
     # 初始化会话
     def __init__(self,
                  uid, psw,
-                 url_login='https://uis.fudan.edu.cn/authserver/login',
+                 url_login='https://zlapp.fudan.edu.cn/uc/wap/login?check_auth=1',
                  url_code="https://zlapp.fudan.edu.cn/backend/default/code"):
         """
         初始化一个session，及登录信息
@@ -70,7 +70,7 @@ class Fudan:
         data = {
             "username": self.uid,
             "password": self.psw,
-            "service": "https://zlapp.fudan.edu.cn/site/ncov/fudanDaily"
+            "service": "https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily"
         }
 
         # 获取登录页上的令牌
@@ -140,7 +140,7 @@ class Zlapp(Fudan):
         """
         print("◉检测是否已提交")
         get_info = self.session.get(
-            'https://zlapp.fudan.edu.cn/ncov/wap/fudan/get-info')
+            'https://zlapp.fudan.edu.cn/fudanncov/wap/fudan/teacher-daily')
         last_info = get_info.json()
 
         print("◉上一次提交日期为:", last_info["d"]["info"]["date"])
@@ -209,8 +209,8 @@ class Zlapp(Fudan):
         
         while(True):
             print("◉正在识别验证码......")
-            code = self.validate_code()
-            print("◉验证码为:", code)
+            # code = self.validate_code()
+            # print("◉验证码为:", code)
             if(city=="上海市"):
                 area = " ".join((city, district))
             else:
@@ -223,7 +223,7 @@ class Zlapp(Fudan):
                     "area": area,
                     #"sfzx": "1",  # 是否在校
                     #"fxyy": "",  # 返校原因
-                    "code": code,
+                    # "code": code,
                 }
             )
             # print(self.last_info)
@@ -243,8 +243,11 @@ def get_account():
     """
     获取账号信息
     """
-    uid = getenv("STD_ID")
-    psw = getenv("PASSWORD")
+    # uid = getenv("STD_ID")
+    # psw = getenv("PASSWORD")
+    uid = "FB2101207"
+    psw = "Fudan08302542"
+
     if uid != None and psw != None:
         print("从环境变量中获取了用户名和密码！")
         return uid, psw
@@ -275,8 +278,8 @@ def get_account():
 if __name__ == '__main__':
     uid, psw = get_account()
     # print(uid, psw)
-    zlapp_login = 'https://uis.fudan.edu.cn/authserver/login?' \
-                  'service=https://zlapp.fudan.edu.cn/site/ncov/fudanDaily'
+    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login?check_auth=1' \
+                  'service=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
     daily_fudan = Zlapp(uid, psw,
                         url_login=zlapp_login, url_code=code_url)
