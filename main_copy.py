@@ -230,7 +230,7 @@ class Zlapp(Fudan):
             )
             # print(self.last_info)
             save = self.session.post(
-                'https://zlapp.fudan.edu.cn/fudanncov/wap/fudan/save',
+                'https://zlapp.fudan.edu.cn/fudanncov/wap/Tfudan/save',
                 data=self.last_info,
                 headers=headers,
                 allow_redirects=False)
