@@ -243,10 +243,8 @@ def get_account():
     """
     获取账号信息
     """
-    # uid = getenv("STD_ID")
-    # psw = getenv("PASSWORD")
-    uid = "FB2101207"
-    psw = "Fudan08302542"
+    uid = getenv("STD_ID")
+    psw = getenv("PASSWORD")
 
     if uid != None and psw != None:
         print("从环境变量中获取了用户名和密码！")
@@ -278,7 +276,8 @@ def get_account():
 if __name__ == '__main__':
     uid, psw = get_account()
     # print(uid, psw)
-    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login?check_auth=1' \
+    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login?'\
+                    'check_auth=1' \
                   'service=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
     daily_fudan = Zlapp(uid, psw,
