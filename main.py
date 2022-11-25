@@ -25,7 +25,7 @@ class Fudan:
     # 初始化会话
     def __init__(self,
                  uid, psw,
-                 url_login='https://zlapp.fudan.edu.cn/uc/wap/login?check_auth=1',
+                 url_login='https://zlapp.fudan.edu.cn/site/center/login',
                  url_code="https://zlapp.fudan.edu.cn/backend/default/code"):
         """
         初始化一个session，及登录信息
@@ -70,13 +70,13 @@ class Fudan:
         data = {
             "username": self.uid,
             "password": self.psw,
-            "service": "https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily"
+            "redirect": "https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily"
         }
 
         # 获取登录页上的令牌
         result = re.findall(
             '<input type="hidden" name="([a-zA-Z0-9\-_]+)" value="([a-zA-Z0-9\-_]+)"/?>', page_login)
-        # print(result)
+        print(result)
         # result 是一个列表，列表中的每一项是包含 name 和 value 的 tuple，例如
         # [('lt', 'LT-6711210-Ia3WttcMvLBWNBygRNHdNzHzB49jlQ1602983174755-7xmC-cas'), ('dllt', 'userNamePasswordLogin'), ('execution', 'e1s1'), ('_eventId', 'submit'), ('rmShown', '1')]
         data.update(
@@ -276,9 +276,8 @@ def get_account():
 if __name__ == '__main__':
     uid, psw = get_account()
     # print(uid, psw)
-    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login?'\
-                    'check_auth=1' \
-                  'service=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
+    zlapp_login = 'https://zlapp.fudan.edu.cn/site/center/login' \
+                  'redirect=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
     daily_fudan = Zlapp(uid, psw,
                         url_login=zlapp_login, url_code=code_url)
