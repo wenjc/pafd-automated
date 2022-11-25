@@ -94,7 +94,7 @@ class Fudan:
             "https://zlapp.fudan.edu.cn/uc/wap/login/check",
             data=data,
             headers=headers,
-            allow_redirects=True)
+            allow_redirects=False)
 
         print("return status code", post.status_code)
 
@@ -158,7 +158,7 @@ class Zlapp(Fudan):
         print("◉今日日期为:", today)
         if last_info["d"]["info"]["date"] == today:
             print("\n*******今日已提交*******")
-            self.close()
+            # self.close()
         else:
             print("\n\n*******未提交*******")
             self.last_info = last_info["d"]["oldInfo"]
@@ -193,7 +193,7 @@ class Zlapp(Fudan):
         """
         headers = {
             "Host": "zlapp.fudan.edu.cn",
-            "Referer": "https://zlapp.fudan.edu.cn/site/ncov/fudanDaily?from=history",
+            "Referer": "https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily?from=history",
             "DNT": "1",
             "TE": "Trailers",
             "User-Agent": self.UA
@@ -227,11 +227,11 @@ class Zlapp(Fudan):
             )
             # print(self.last_info)
             save = self.session.post(
-                'https://zlapp.fudan.edu.cn/ncov/wap/fudan/save',
+                'https://zlapp.fudan.edu.cn/fudanncov/wap/fudan/save',
                 data=self.last_info,
                 headers=headers,
                 allow_redirects=False)
-
+            print("save.text", save.text)
             save_msg = json_loads(save.text)["m"]
             print(save_msg, '\n\n')
             time.sleep(0.1)
