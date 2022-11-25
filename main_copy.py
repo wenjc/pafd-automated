@@ -158,6 +158,9 @@ class Zlapp(Fudan):
         print("◉今日日期为:", today)
         if last_info["d"]["info"]["date"] == today:
             print("\n*******今日已提交*******")
+
+            self.last_info = last_info["d"]["oldInfo"]
+
             # self.close()
         else:
             print("\n\n*******未提交*******")
