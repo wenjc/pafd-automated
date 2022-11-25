@@ -25,7 +25,7 @@ class Fudan:
     # 初始化会话
     def __init__(self,
                  uid, psw,
-                 url_login='https://zlapp.fudan.edu.cn/site/center/login',
+                 url_login='https://zlapp.fudan.edu.cn/uc/wap/login',
                  url_code="https://zlapp.fudan.edu.cn/backend/default/code"):
         """
         初始化一个session，及登录信息
@@ -70,6 +70,7 @@ class Fudan:
         data = {
             "username": self.uid,
             "password": self.psw,
+            "check_auth": "1",
             "redirect": "https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily"
         }
 
@@ -276,7 +277,8 @@ def get_account():
 if __name__ == '__main__':
     uid, psw = get_account()
     # print(uid, psw)
-    zlapp_login = 'https://zlapp.fudan.edu.cn/site/center/login' \
+    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login' \
+                 'check_auth=1' \
                   'redirect=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
     daily_fudan = Zlapp(uid, psw,
