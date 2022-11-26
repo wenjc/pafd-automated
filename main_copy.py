@@ -142,9 +142,9 @@ class Zlapp(Fudan):
             'https://zlapp.fudan.edu.cn/fudanncov/wap/fudan/teacher-daily')
         last_info = get_info.json()
 
-        print("◉上一次提交日期为:", last_info["d"]["info"]["date"])
+        print("◉上一次提交日期为:", last_info["d"]["oldInfo"]["date"])
 
-        position = last_info["d"]["info"]['geo_api_info']
+        position = last_info["d"]["oldInfo"]['geo_api_info']
         position = json_loads(position)
 
         print("◉上一次提交地址为:", position['formattedAddress'])
@@ -156,12 +156,9 @@ class Zlapp(Fudan):
         time.tzset()
         today = time.strftime("%Y%m%d", time.localtime())
         print("◉今日日期为:", today)
-        if last_info["d"]["info"]["date"] == today:
+        if last_info["d"]["oldInfo"]["date"] == today:
             print("\n*******今日已提交*******")
-
-            self.last_info = last_info["d"]["oldInfo"]
-
-            # self.close()
+            self.close()
         else:
             print("\n\n*******未提交*******")
             self.last_info = last_info["d"]["oldInfo"]
@@ -196,7 +193,7 @@ class Zlapp(Fudan):
         """
         headers = {
             "Host": "zlapp.fudan.edu.cn",
-            "Referer": "https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily?from=history",
+            "Referer": "https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily",
             "DNT": "1",
             "TE": "Trailers",
             "User-Agent": self.UA
@@ -219,7 +216,7 @@ class Zlapp(Fudan):
                 area = " ".join((province, city, district))
             self.last_info.update(
                 {
-                    "tw": "13",
+                    "tw": "10",
                     "province": province,
                     "city": city,
                     "area": area,
@@ -230,7 +227,7 @@ class Zlapp(Fudan):
             )
             # print(self.last_info)
             save = self.session.post(
-                'https://zlapp.fudan.edu.cn/fudanncov/wap/Tfudan/save',
+                'https://zlapp.fudan.edu.cn/fudanncov/wap/fudan/save-teacher-daily',
                 data=self.last_info,
                 headers=headers,
                 allow_redirects=False)
