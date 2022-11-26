@@ -142,7 +142,7 @@ class Zlapp(Fudan):
             'https://zlapp.fudan.edu.cn/fudanncov/wap/fudan/teacher-daily')
         last_info = get_info.json()
 
-        print("◉上一次提交日期为:", last_info["d"]["oldInfo"]["date"])
+        print("◉上一次提交日期为:", last_info["d"]["info"]["date"])
 
         position = last_info["d"]["oldInfo"]['geo_api_info']
         position = json_loads(position)
@@ -156,7 +156,7 @@ class Zlapp(Fudan):
         time.tzset()
         today = time.strftime("%Y%m%d", time.localtime())
         print("◉今日日期为:", today)
-        if last_info["d"]["oldInfo"]["date"] == today:
+        if last_info["d"]["info"]["date"] == today:
             print("\n*******今日已提交*******")
             self.close()
         else:
