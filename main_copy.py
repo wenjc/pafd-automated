@@ -64,7 +64,7 @@ class Fudan:
         """
         执行登录
         """
-        page_login = self._page_init()
+        # page_login = self._page_init()
 
         print("getting tokens")
         data = {
@@ -275,7 +275,7 @@ def get_account():
 if __name__ == '__main__':
     uid, psw = get_account()
     # print(uid, psw)
-    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login?' \
+    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login' \
                 'check_auth=1' \
                   'redirect=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
