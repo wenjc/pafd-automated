@@ -50,7 +50,7 @@ class Fudan:
         print("◉Initiating——", end='')
         print(self.session)
         print(self.url_login)
-        page_login = self.session.get(self.url_login,verify=False)
+        page_login = self.session.get(self.url_login)
 
         print("return status code",
               page_login.status_code)
