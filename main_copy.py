@@ -279,12 +279,17 @@ if __name__ == '__main__':
                 'check_auth=1' \
                   'redirect=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
+    print("已读完账号……")
     daily_fudan = Zlapp(uid, psw,
                         url_login=zlapp_login, url_code=code_url)
+    print('准备登录')
     daily_fudan.login()
-
+    print('登录完成')
+    print('准备验证是否提交')
     daily_fudan.check()
+    print('验证完成')
     daily_fudan.checkin()
     # 再检查一遍
     daily_fudan.check()
+    print('再次验证')
     daily_fudan.close(1)
