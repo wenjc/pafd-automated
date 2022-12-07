@@ -34,7 +34,7 @@ class Fudan:
         :param url_login: 登录页，默认服务为空
         """
         self.session = session()
-        self.session.keep_alive = True # 改为持久链接
+        self.session.keep_alive = False # 改为持久链接
         self.session.headers['User-Agent'] = self.UA
         self.url_login = url_login
         self.url_code = url_code
@@ -50,7 +50,7 @@ class Fudan:
         print("◉Initiating——", end='')
         print(self.session)
         print(self.url_login)
-        page_login = self.session.get(self.url_login)
+        page_login = self.session.get(self.url_login, verify=False)
 
         print("return status code",
               page_login.status_code)
