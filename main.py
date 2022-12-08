@@ -36,6 +36,7 @@ class Fudan:
         self.session = session()
         self.session.keep_alive = True # 改为持久链接
         self.session.headers['User-Agent'] = self.UA
+        self.session.headers['authority'] = 'zlapp.fudan.edu.cn'
         self.url_login = url_login
         self.url_code = url_code
 
