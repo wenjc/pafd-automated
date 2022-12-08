@@ -48,9 +48,8 @@ class Fudan:
         :return: 登录页page source
         """
         print("◉Initiating——", end='')
-        print(self.session)
         print(self.url_login)
-        page_login = self.session.get(self.url_login, verify=False)
+        page_login = self.session.get(self.url_login,)
 
         print("return status code",
               page_login.status_code)
@@ -67,7 +66,7 @@ class Fudan:
         执行登录
         """
         page_login = self._page_init()
-
+        print(page_login)
         print("getting tokens")
         data = {
             "username": self.uid,
@@ -277,9 +276,7 @@ def get_account():
 if __name__ == '__main__':
     uid, psw = get_account()
     # print(uid, psw)
-    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login?'\
-        'check_auth=1&'\
-            'redirect=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
+    zlapp_login = 'https://www.baidu.com/'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
     print("已读完账号……")
     daily_fudan = Zlapp(uid, psw,
