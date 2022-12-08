@@ -20,7 +20,7 @@ class Fudan:
     """
     建立与复旦服务器的会话，执行登录/登出操作
     """
-    UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:76.0) Gecko/20100101 Firefox/76.0"
+    UA = "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36 Edg/108.0.1462.42"
 
     # 初始化会话
     def __init__(self,
@@ -34,7 +34,7 @@ class Fudan:
         :param url_login: 登录页，默认服务为空
         """
         self.session = session()
-        self.session.keep_alive = False # 改为持久链接
+        self.session.keep_alive = True # 改为持久链接
         self.session.headers['User-Agent'] = self.UA
         self.url_login = url_login
         self.url_code = url_code
@@ -49,7 +49,7 @@ class Fudan:
         """
         print("◉Initiating——", end='')
         print(self.url_login)
-        page_login = self.session.get(self.url_login,)
+        page_login = self.session.get(self.url_login)
 
         print("return status code",
               page_login.status_code)
@@ -277,7 +277,7 @@ if __name__ == '__main__':
     uid, psw = get_account()
     # print(uid, psw)
     zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login?'\
-        'check_auth=1&redirect=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
+        'check_auth=1'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
     print("已读完账号……")
     daily_fudan = Zlapp(uid, psw,
