@@ -276,7 +276,9 @@ def get_account():
 if __name__ == '__main__':
     uid, psw = get_account()
     # print(uid, psw)
-    zlapp_login = 'https://www.baidu.com/'
+    zlapp_login = 'https://zlapp.fudan.edu.cn/uc/wap/login?'\
+        'check_auth=1'\
+        'redirect=https://zlapp.fudan.edu.cn/site/fudanncov/TfudanDaily'
     code_url = "https://zlapp.fudan.edu.cn/backend/default/code"
     print("已读完账号……")
     daily_fudan = Zlapp(uid, psw,
